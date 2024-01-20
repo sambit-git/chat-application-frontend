@@ -1,0 +1,10 @@
+.content{
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.left{
+
+}
+.right{}
