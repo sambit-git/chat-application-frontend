@@ -3,7 +3,7 @@ import TokenService from "./token";
 
 const api = axios.create({
   baseURL: "http://localhost:8000/api/",
-  timeout: 1000,
+  // timeout: 1000,
   headers: { "Content-Type": "application/json" },
 });
 
@@ -16,7 +16,6 @@ api.interceptors.request.use(
     return config;
   },
   (error) => {
-    console.log(error);
     return Promise.reject(error);
   }
 );
@@ -26,8 +25,14 @@ api.interceptors.response.use(
     return res;
   },
   (error) => {
-    console.log(error);
-    return Promise.reject(error);
+    try {
+      if (error?.response?.status === 401) {
+        TokenService.removeUser();
+      }
+      return Promise.reject(error);
+    } catch (err) {
+      return Promise.reject(err);
+    }
   }
 );
 

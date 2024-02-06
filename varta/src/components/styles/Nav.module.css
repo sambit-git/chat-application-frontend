@@ -9,6 +9,10 @@
 
 .links{}
 
+.usernme::first-letter{
+  text-transform: uppercase;
+}
+
 .link{
   margin-right: 1rem;
   text-decoration: none;
